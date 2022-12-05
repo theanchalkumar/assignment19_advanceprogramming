@@ -1,0 +1,102 @@
+1.
+
+import numpy as np
+
+def checker_board(n,e1,e2):
+    if e1 != e2:
+        l = []
+        for i in range(n):
+            l1 = []
+
+            for j in range(n):
+                if i % 2 == 0:
+                    if j % 2 == 0:
+                        l1.append(e1) 
+                    else:
+                        l1.append(e2)
+                else:
+                    if j % 2 == 0:
+                        l1.append(e2) 
+                    else:
+                        l1.append(e1) 
+
+            l.append(l1)
+        return l
+    else:
+        return "invalid"
+
+print(checker_board(2,7,6))
+print(checker_board(3, "A", "B"))
+print(checker_board(4, "c", "d"))
+print(checker_board(4, "c", "c"))
+
+
+2.
+
+
+def almost_palindrome(s):
+    count = 0 
+    s1 = s[0:int(len(s)/2)+1]
+    s2 = s[-1:int(len(s)/2)-1:-1]
+    for i in range(len(s1)):
+        if s1[i] != s2[i]:
+            count += 1                
+    if count == 1:
+        return True
+    else:
+        return False
+    
+print(almost_palindrome("abcdcbg"))
+print(almost_palindrome("abcacia"))
+print(almost_palindrome("abcdaaa"))
+
+
+3.
+
+
+def prime_numbers(n):
+    l = [2]
+    for i in range(3,n,2):
+        for j in range(2,i):
+            if i % j == 0:                
+                break
+        else:
+            l.append(i)
+    return len(l),l
+
+prime_numbers(30)
+
+
+4.
+
+
+def after_n_days(l,n):
+    days_of_the_week = ["Monday", "Tuesday","Wednesday","Thursday", "Friday", "Saturday","Sunday"]
+    
+    for i in range(len(l)):
+        if days_of_the_week.index(l[i]) + n < len(days_of_the_week):
+            l[i] = days_of_the_week[days_of_the_week.index(l[i])+n]
+        else:
+            l[i] = days_of_the_week[days_of_the_week.index(l[i])+n-len(days_of_the_week)]
+            
+    return l
+
+print(after_n_days(["Thursday", "Monday"], 4))
+print(after_n_days(["Sunday", "Sunday", "Sunday"], 1))
+print(after_n_days(["Monday", "Tuesday", "Friday"], 1) )
+
+
+5.
+
+
+def is_correct_aliases(l1,l2):
+    for i in range(len(l1)):
+        if l1[i][0] == l2[i][0] and l1[i][0] == l2[i].split()[1][0]:
+            return True
+        else:
+            return False
+        
+        
+print(is_correct_aliases(["Adrian M.", "Harriet S.", "Mandy T."], ["Amazing Artichoke", "Hopeful Hedgehog", "Marvelous Mouse"]))
+print(is_correct_aliases(["Rachel F.", "Pam G.", "Fred Z.", "Nancy K."], ["Reassuring Rat", "Peaceful Panda", "Fantastic Frog", "Notable Nickel"]))
+print(is_correct_aliases(["Beth T."], ["Brandishing Mimosa"]) )
